@@ -3,7 +3,7 @@ import paramiko
 hostname='192.168.133.129'
 username='root'
 password='ading'
-port=22
+port=36251
 
 ssh=paramiko.SSHClient()
 ssh.load_system_host_keys()
