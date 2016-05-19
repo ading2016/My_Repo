@@ -1,6 +1,7 @@
 __author__ = 'Administrator'
 import tornado.ioloop
 import tornado.web
+import time
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -12,6 +13,15 @@ class MainHandler(tornado.web.RequestHandler):
     def post(self):
         self.set_header("Content-Type","text/plain")
         self.write("git reset --hard " + self.get_argument("message") + self.get_argument("message1"))
+    def getupdate(self):
+        self.message = self.get_argument("message")
+        while 1:
+            if self.message == "":
+                print "nothing"
+                time.sleep(3)
+            else:
+                print self.message
+                time.sleep(5)
 
 
 
