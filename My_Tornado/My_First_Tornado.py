@@ -2,12 +2,12 @@ __author__ = 'Administrator'
 import tornado.ioloop
 import tornado.web
 import time
+import os
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write('<html><body><form action="/" method="post">'
                    '<input type="text" name="message">'
-                   '<input type="text" name="message1">'
                    '<input type="submit" value="Submit">'
                    '</form></body></html>')
     def post(self):
@@ -17,8 +17,9 @@ class MainHandler(tornado.web.RequestHandler):
         if self.message == "":
             print "nothing"
         else:
-            print self.message
-              
+            cmd = "cd /root/github/My_Repo/My_Tornado && git reset --hard %s " % self.get_argument
+            os.open(cmd)
+
 
 
 class StoryHandle(tornado.web.RequestHandler):
