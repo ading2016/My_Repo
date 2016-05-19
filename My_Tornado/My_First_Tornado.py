@@ -18,7 +18,9 @@ class MainHandler(tornado.web.RequestHandler):
             print "nothing"
         else:
             cmd = "cd /root/github/My_Repo/My_Tornado && git reset --hard %s " % self.get_argument
-            os.open(cmd)
+            print cmd
+            #os.open(cmd)
+
 
 
 
