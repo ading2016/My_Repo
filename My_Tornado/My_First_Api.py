@@ -7,9 +7,12 @@ class UpdateGit(My_First_Tornado.MainHandler):
     def getupdate(self):
         self.message = self.get_argument("message")
         while 1:
-            print self.message
-            time.sleep(5)
+            if self.message == "":
+                time.sleep(3)
+            else:
+                print self.message
+                time.sleep(5)
 
 
 if __name__ == "__main__":
-    UpdateGit.getupdate()
+    print UpdateGit.getupdate()
