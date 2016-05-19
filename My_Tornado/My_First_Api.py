@@ -16,4 +16,4 @@ class UpdateGit(My_First_Tornado.MainHandler):
 
 
 if __name__ == "__main__":
-    UpdateGit
+    UpdateGit.getupdate()
