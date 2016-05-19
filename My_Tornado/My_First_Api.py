@@ -8,6 +8,7 @@ class UpdateGit(My_First_Tornado.MainHandler):
         self.message = self.get_argument("message")
         while 1:
             if self.message == "":
+                print "nothing"
                 time.sleep(3)
             else:
                 print self.message
