@@ -14,14 +14,11 @@ class MainHandler(tornado.web.RequestHandler):
         self.set_header("Content-Type","text/plain")
         self.write("git reset --hard " + self.get_argument("message") + self.get_argument("message1"))
         self.message = self.get_argument("message")
-        while 1:
-            if self.message == "":
-                print "nothing"
-                time.sleep(3)
-            else:
-                print self.message
-                time.sleep(5)
-
+        if self.message == "":
+            print "nothing"
+        else:
+            print self.message
+              
 
 
 class StoryHandle(tornado.web.RequestHandler):
