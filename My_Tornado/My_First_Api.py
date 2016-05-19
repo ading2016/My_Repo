@@ -3,7 +3,7 @@ import os
 import sys
 import time
 import My_First_Tornado
-class UpdateGit():
+class UpdateGit(My_First_Tornado):
     def get(self):
         self.message = My_First_Tornado.MainHandler.get_argument("message")
         while 1:
