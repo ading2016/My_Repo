@@ -4,7 +4,7 @@ import sys
 import time
 import My_First_Tornado
 class UpdateGit(My_First_Tornado):
-    def get(self):
+    def getupdate(self):
         self.message = My_First_Tornado.MainHandler.get_argument("message")
         while 1:
             print self.message
@@ -12,4 +12,4 @@ class UpdateGit(My_First_Tornado):
 
 
 if __name__ == "__main__":
-    UpdateGit.get()
+    UpdateGit.getupdate()
