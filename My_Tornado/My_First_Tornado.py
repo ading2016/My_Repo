@@ -1,18 +1,19 @@
 __author__ = 'Administrator'
 import tornado.ioloop
 import tornado.web
-import time
 import os
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write('<html><body><form action="/" method="post">'
                    '<input type="text" name="message">'
+                   '<input type="file" name="filename">'
                    '<input type="submit" value="Submit">'
                    '</form></body></html>')
     def post(self):
         self.set_header("Content-Type","text/plain")
         self.write("git reset --hard " + self.get_argument("message"))
+        self.write("you get the file " + self.request.files("filename"))
         self.message = self.get_argument("message")
         if self.message == "":
             print "nothing"
