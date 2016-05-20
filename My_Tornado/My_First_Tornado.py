@@ -25,13 +25,15 @@ class MainHandler(tornado.web.RequestHandler):
 class UploadFile(tornado.web.RequestHandler):
     def get(self):
         self.write('<html><body><form action="file" enctype="multipart/for-data" method="post">'
-                   '<input type="file" name="filename"/><br/>'
+                   '<input type="file" name="file"/><br/>'
                    '<input type="submit" value="Submit">'
                    '</form></body></html>')
     def post(self):
-         self.filenamedic = self.request.files["filename"]
-         for dic1 in self.filenamedic:
-            print self.filenamedic[dic1]
+         self.file_meta = self.request.files["file"]
+         for meta in self.filen_meta:
+            filename =  meta["filename"]
+            print filename
+            self.write(filename)
 
 class StoryHandle(tornado.web.RequestHandler):
     def get(self, story_id):
