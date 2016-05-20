@@ -25,13 +25,13 @@ class MainHandler(tornado.web.RequestHandler):
 class UploadFile(tornado.web.RequestHandler):
     def get(self):
         self.write('<html><body><form action="file" enctype="multipart/for-data" method="post">'
-                   '<input type="file" name="file"><br/>'
+                   '<input type="file" name="postfile"><br/>'
                    '<input type="submit" value="Submit">'
                    '</form></body></html>')
     def post(self):
-         file_meta = self.request.files["file"]
+         file_meta = self.request.files['postfile']
          for meta in file_meta:
-            filename = meta["filename"]
+            filename = meta['filename']
             print filename
             self.write(filename)
 
@@ -39,10 +39,18 @@ class StoryHandle(tornado.web.RequestHandler):
     def get(self, story_id):
         self.write("You requested the story " + story_id)
 
+class ProfileHandle(tornado.web.RequestHandler):
+    def initialize(self,database):
+        self.database = database
+    def get(self,username):
+        self.username = username
+
+
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/story/([0-9]+)",StoryHandle),
     (r"/file",UploadFile),
+    (r"/user",ProfileHandle),
 ])
 
 if __name__ == "__main__":
