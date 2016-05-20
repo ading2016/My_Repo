@@ -25,7 +25,7 @@ class MainHandler(tornado.web.RequestHandler):
 class UploadFile(tornado.web.RequestHandler):
     def get(self):
         self.write('<html><body><form action="file" enctype="multipart/for-data" method="post">'
-                   '<input type="file" name="file"/><br/>'
+                   '<input type="file" name="file"><br/>'
                    '<input type="submit" value="Submit">'
                    '</form></body></html>')
     def post(self):
