@@ -29,9 +29,9 @@ class UploadFile(tornado.web.RequestHandler):
                    '<input type="submit" value="Submit">'
                    '</form></body></html>')
     def post(self):
-         self.file_meta = self.request.files["file"]
-         for meta in self.file_meta:
-            filename =  meta["filename"]
+         file_meta = self.request.files["file"]
+         for meta in file_meta:
+            filename = meta["filename"]
             print filename
             self.write(filename)
 
