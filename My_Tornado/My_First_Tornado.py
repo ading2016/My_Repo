@@ -3,6 +3,7 @@ import tornado.ioloop
 import tornado.web
 import os
 
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write('<html><body><form action="/" method="post">'
@@ -13,9 +14,6 @@ class MainHandler(tornado.web.RequestHandler):
     def post(self):
         self.set_header("Content-Type","text/plain")
         self.write("git reset --hard " + self.get_argument("message"))
-        self.filenamedic = self.request.files("filename")
-        for dic1 in self.filenamedic:
-            print self.filenamedic[dic1]
         self.message = self.get_argument("message")
         if self.message == "":
             print "nothing"
@@ -24,8 +22,16 @@ class MainHandler(tornado.web.RequestHandler):
             print cmd
             #os.popen(cmd)
 
-
-
+class UploadFile(tornado.web.RequestHandler):
+    def get(self):
+        self.write('<html><body><form action="file" enctype="multipart/for-data" method="post">'
+                   '<input type="file" name="filename"/><br/>'
+                   '<input type="submit" value="Submit">'
+                   '</form></body></html>')
+    def post(self):
+         self.filenamedic = self.request.files["filename"]
+         for dic1 in self.filenamedic:
+            print self.filenamedic[dic1]
 
 class StoryHandle(tornado.web.RequestHandler):
     def get(self, story_id):
@@ -34,6 +40,7 @@ class StoryHandle(tornado.web.RequestHandler):
 application = tornado.web.Application([
     (r"/", MainHandler),
     (r"/story/([0-9]+)",StoryHandle),
+    (r"/file",UploadFile),
 ])
 
 if __name__ == "__main__":
