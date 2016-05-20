@@ -13,14 +13,16 @@ class MainHandler(tornado.web.RequestHandler):
     def post(self):
         self.set_header("Content-Type","text/plain")
         self.write("git reset --hard " + self.get_argument("message"))
-        self.write("you get the file " + self.request.files("filename"))
+        self.filename = self.request.files("filename")
+        for file in self.filename:
+            self.write(file)
         self.message = self.get_argument("message")
         if self.message == "":
             print "nothing"
         else:
             cmd = "cd /root/github/My_Repo/My_Tornado && git reset --hard %s " % self.get_argument("message")
             print cmd
-            os.popen(cmd)
+            #os.popen(cmd)
 
 
 
