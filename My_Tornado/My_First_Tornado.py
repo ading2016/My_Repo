@@ -13,9 +13,8 @@ class MainHandler(tornado.web.RequestHandler):
     def post(self):
         self.set_header("Content-Type","text/plain")
         self.write("git reset --hard " + self.get_argument("message"))
-        self.filename = self.request.files("filename")
-        for file in self.filename:
-            self.write(file)
+        self.filenamedic = self.request.files("filename")
+        self.write(self.filenamedic.filename)
         self.message = self.get_argument("message")
         if self.message == "":
             print "nothing"
